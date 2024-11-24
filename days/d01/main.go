@@ -27,22 +27,16 @@ func main() {
 
 	var acc int
 	for _, line := range lines {
-		d1 := getFirstDigit(line)
-		d2 := getLastDigit(line)
-		acc += combineRuneDigits(d1, d2)
+		acc += getFirstDigit(line)*10 + getLastDigit(line)
 	}
 
 	fmt.Println(acc)
 }
 
-func combineRuneDigits(d1 int, d2 int) int {
-	return d1*10 + d2
-}
-
 func getLastDigit(line string) int {
 	for i := len(line) - 1; i >= 0; i-- {
-		if b, n := containsSpelledDigit(line[i:]); b {
-			return n
+		if contains, digit := containsSpelledDigit(line[i:]); contains {
+			return digit
 		} else if unicode.IsDigit(rune(line[i])) {
 			return int(rune(line[i]) - '0')
 		}
@@ -54,8 +48,8 @@ func getLastDigit(line string) int {
 
 func getFirstDigit(line string) int {
 	for i := 0; i < len(line); i++ {
-		if b, n := containsSpelledDigit(line[:i]); b {
-			return n
+		if contains, digit := containsSpelledDigit(line[:i]); contains {
+			return digit
 		} else if unicode.IsDigit(rune(line[i])) {
 			return int(rune(line[i]) - '0')
 		}
