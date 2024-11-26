@@ -1,4 +1,4 @@
-package main
+package day2
 
 import (
 	"fmt"
@@ -14,8 +14,8 @@ var contained = map[string]int{
 	"blue":  14,
 }
 
-func main() {
-	lines, err := utils.ReadLines("")
+func ExecPt01() {
+	lines, err := utils.ReadLines("d02")
 	utils.Check(err)
 
 	acc := 0

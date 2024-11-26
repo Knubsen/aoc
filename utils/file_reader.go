@@ -3,12 +3,11 @@ package utils
 import (
 	"bufio"
 	"os"
+	"path/filepath"
 )
 
 func ReadLines(path string) ([]string, error) {
-	if path == "" {
-		path = "input/input.txt"
-	}
+	path = getImportFilePath(path)
 
 	file, err := os.Open(path)
 	if err != nil {
@@ -25,4 +24,12 @@ func ReadLines(path string) ([]string, error) {
 		}
 	}
 	return lines, scanner.Err()
+}
+
+func getImportFilePath(day string) string {
+	cwd, err := os.Getwd()
+	Check(err)
+
+	importPath := filepath.Join(cwd, "days", day, "input/input.txt")
+	return importPath
 }

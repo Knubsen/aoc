@@ -1,4 +1,4 @@
-package main
+package day01
 
 import (
 	"fmt"
@@ -21,8 +21,8 @@ var numberMap = map[string]int{
 	"nine":  9,
 }
 
-func main() {
-	lines, err := utils.ReadLines("")
+func ExecPt02() {
+	lines, err := utils.ReadLines("d01")
 	utils.Check(err)
 
 	var acc int
